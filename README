@@ -1,0 +1,86 @@
+= jlGMapSlotPlugin =
+====================
+
+This plugin adds google map slot to Apostrophe. Parts of jlGMapSlotPlugin were inspired by other great plugins such as dmGoogleMapPlugin (of diem CMF), sfEasyGMapPlugin and aExGMapSlotPlugin (another Google Map slot plugin for Apostrophe).
+
+As the google map support is not as complete as what is provided by sfEasyGMapPlugin, this plugin uses different class names so it can co-exist with sfEasyGMapPlugin.
+
+== Features ==
+--------------
+1. Supports latest Google Maps Javascript API (v3), Google Geocode API and Google Static Maps API.
+2. Supports multiple google map slots on the same page.
+3. Includes sfValidatorGMapGeo validator to check editor entered address with Google Geocode API.
+4. Size (width/height) configurable via slot variants.
+5. Configurable options via slot edit form:
+   - Static or Dynamic Map
+   - Show Marker
+   - Zoom
+   - Map Type
+   - Show Navigation Control
+   - Show Map Type Control
+   - Show StreetView Control
+   - Show Scale Control
+
+
+== Installation & Configuration ==
+----------------------------------
+
+1. Download the plugin and extract to the plugins directory of your project.
+
+2. Enabled the plugin in ProjectConfiguration.class.php.
+Add
+	'jlGMapSlotPlugin'
+to 
+	$this->enablePlugins
+
+3. Enabled the slot in apps\frontend\config\app.yml.
+Add
+	GMap: Google Map
+to
+	slot_types
+
+4. (optional) Configure slot variants in apps\frontend\config\app.yml.
+Add
+      GMap:
+        small:
+          label: Small (300x200)
+          options:
+            width: 300
+            height: 200
+        medium:
+          label: Medium (500x400)
+          options:
+            width: 500
+            height: 400
+        large:
+          label: Large (800x600)
+          options:
+            width: 800
+            height: 600
+to
+	slot_variants
+
+5. Enable the slot module in apps\frontend\config\settings.yml.
+Add
+	GMapSlot
+to
+	enabled_modules
+
+6. Add GMap slot to templates apps\frontend\modules\a\templates\defaultTemplate.php and apps\frontend\modules\a\templates\homeTemplate.php.
+Add
+	'GMap'
+to
+	allowed_types of body and sidebar areas
+
+
+== Using the Plugin ==
+----------------------
+Use the slot just as how you would use other built-in Apostrophe slots.
+
+
+== Copyright ==
+---------------
+(c) 2010 Jeff Layanto
+
+dmArray is from diem CMF (c) 2007-2009 Thibault Duplessis (www.diem-project.com)
+Special thanks to Fotis Paraskevopoulos for all the help (via Apostrophe Google Group).
