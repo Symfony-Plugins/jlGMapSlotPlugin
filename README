@@ -1,12 +1,12 @@
 # jlGMapSlotPlugin #
---------------------
 
 This plugin adds google map slot to Apostrophe. Parts of jlGMapSlotPlugin were inspired by other great plugins such as dmGoogleMapPlugin (of diem CMF), sfEasyGMapPlugin and aExGMapSlotPlugin (another Google Map slot plugin for Apostrophe).
 
 As the google map support is not as complete as what is provided by sfEasyGMapPlugin, this plugin uses different class names so it can co-exist with sfEasyGMapPlugin.
 
+
 ## Features ##
---------------
+
 1. Supports latest Google Maps Javascript API (v3), Google Geocode API and Google Static Maps API.
 2. Supports multiple google map slots on the same page.
 3. Includes sfValidatorGMapGeo validator to check editor entered address with Google Geocode API.
@@ -23,7 +23,6 @@ As the google map support is not as complete as what is provided by sfEasyGMapPl
 
 
 ## Installation & Configuration ##
-----------------------------------
 
 1. Download the plugin and extract to the plugins directory of your project.
 
@@ -74,16 +73,32 @@ to
 
 7. Finally, 
 ./symfony cc
+
 ./symfony doctrine:build --all-classes
 
 
 ## Using the Plugin ##
-----------------------
+
 Use the slot just as how you would use other built-in Apostrophe slots.
 
 
+## To Do ##
+
+1. Refactor javascript to external js
+
+
+## Changelog ##
+
+v0.5
+Fixed compatibility issue with Internet Explorer 6 (causing Operation Aborted error)
+Updated javascript to be more robust re-order of execution
+
+v0.4.x
+Initial Release
+
+
 ## Copyright ##
----------------
+
 (c) 2010 Jeff Layanto
 
 dmArray is from diem CMF (c) 2007-2009 Thibault Duplessis (www.diem-project.org)

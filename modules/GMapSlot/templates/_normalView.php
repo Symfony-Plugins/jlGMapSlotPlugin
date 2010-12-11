@@ -4,7 +4,7 @@
 
 <?php if ($gmap->isValid()): ?>
   <?php if ($gmap->isDynamic()): ?>
-    <div id="<?php echo $gmap->getId() ?>" style="width:<?php echo $gmap->getWidth() ?>px; height:<?php echo $gmap->getHeight() ?>px;">
+    <div class="gmap" id="<?php echo $gmap->getId() ?>" style="width:<?php echo $gmap->getWidth() ?>px; height:<?php echo $gmap->getHeight() ?>px;">
     </div>
     <?php echo javascript_tag($sf_data->getRaw('gmap')->displayDynamic()) ?>
   <?php else: ?>

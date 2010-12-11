@@ -99,19 +99,19 @@ class jlGMap
     if($this->options['Map Type Control'] != null)
       $html[] = 'mapTypeControl: ' . (bool)$this->options['Map Type Control'] . ',';
     else
-      $html[] = 'mapTypeControl: false,';
+      $html[] = 'mapTypeControl: 0,';
     if($this->options['Navigation Control'] != null)
       $html[] = 'navigationControl: ' . (bool)$this->options['Navigation Control'] . ',';
     else
-      $html[] = 'navigationControl: false,';
+      $html[] = 'navigationControl: 0,';
     if($this->options['Scale Control'] != null)
       $html[] = 'scaleControl: ' . (bool)$this->options['Scale Control'] . ',';
     else
-      $html[] = 'scaleControl: false,';
+      $html[] = 'scaleControl: 0,';
     if($this->options['StreetView Control'] != null)
       $html[] = 'streetViewControl: ' . (bool)$this->options['StreetView Control'];
     else
-      $html[] = 'streetViewControl: false';
+      $html[] = 'streetViewControl: 0';
     $html[] = '};';
 
     $html[] = "var map_". str_replace("-", "_", $this->options['id']) . " = new google.maps.Map(document.getElementById('" . $this->options['id'] . "'),";
@@ -127,16 +127,24 @@ class jlGMap
 
     $html[] = '}';
 
-    $html[] = '//avoid loading the maps api multiple times';
-    $html[] = 'if(!(window.google != undefined)){';
-    $html[] = 'var script = document.createElement("script");';
-    $html[] = 'script.type = "text/javascript";';
-    $html[] = 'script.src = "http://maps.google.com/maps/api/js?sensor=false";';
-    $html[] = 'document.body.appendChild(script);';
+    $html[] = 'function trigger_init() {';
+    $html[] = "$('.gmap').trigger('init');";
     $html[] = '}';
 
-    $html[] = '$(function(){';
+    $html[] = '//avoid loading the maps api multiple times';
+    $html[] = 'if(gmapjs == undefined){';
+    $html[] = 'var gmapjs = "gmapjs";';
+    $html[] = '$(function() {';
+    $html[] = 'var script = document.createElement("script");';
+    $html[] = 'script.type = "text/javascript";';
+    $html[] = 'script.src = "http://maps.google.com/maps/api/js?sensor=false&callback=trigger_init";';
+    $html[] = 'document.getElementsByTagName("head")[0].appendChild(script);';
+    $html[] = '});';
+    $html[] = '}';
+
+    $html[] = "$('.gmap').bind('init', function() {";
     $html[] = 'initialize_' . str_replace("-", "_", $this->options['id']) . '();';
+    $html[] = "$('.gmap').unbind();";
     $html[] = '});';
 
     $html = join("\n", $html);
